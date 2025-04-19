@@ -36,7 +36,7 @@ export default function Navbar() {
           </Link>
           <Link href="/industries" className="transition-colors hover:text-primary">
             Industries
-          </Link>
+           </Link>
           <Link href="/about" className="transition-colors hover:text-primary">
             About Us
           </Link>
