@@ -1,14 +1,20 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { ArrowLeft, Loader2 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
@@ -22,28 +28,23 @@ export default function SignInPage() {
     e.preventDefault()
     setIsLoading(true)
 
-    // Simulate authentication - replace with your actual auth logic
     setTimeout(() => {
       setIsLoading(false)
-      // After successful authentication, you would typically:
-      // 1. Store auth token/user data
-      // 2. Redirect to dashboard or home page
       router.push("/")
     }, 1500)
   }
 
   return (
-    <div className="container flex h-screen max-w-screen-2xl items-center justify-center py-8">
-      <Card className="mx-auto w-full max-w-md">
-        <CardHeader className="space-y-1">
-          <div className="flex items-center">
-            <Link href="/" className="inline-flex items-center text-sm text-muted-foreground hover:text-primary">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to home
-            </Link>
-          </div>
-          <CardTitle className="text-2xl font-bold">Sign in to your account</CardTitle>
-          <CardDescription>Enter your email and password to sign in</CardDescription>
+    <div className="container flex h-screen items-center justify-center px-4">
+      <Card className="w-full max-w-md rounded-lg shadow-md">
+        <CardHeader className="space-y-3 text-center">
+          <img
+            src="/freepik__a-modern-logo-for-reaqalert-with-the-text-in-a-sle__59980.svg"
+            alt="App Logo"
+            className="mx-auto h-10 w-10"
+          />
+          <CardTitle className="text-2xl font-semibold">Sign in to your account</CardTitle>
+          <CardDescription>Use your credentials to access the dashboard</CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
@@ -61,7 +62,10 @@ export default function SignInPage() {
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label htmlFor="password">Password</Label>
-                <Link href="/forgot-password" className="text-xs text-primary hover:underline">
+                <Link
+                  href="/forgot-password"
+                  className="text-xs text-primary hover:underline"
+                >
                   Forgot password?
                 </Link>
               </div>
@@ -85,7 +89,23 @@ export default function SignInPage() {
                 "Sign in"
               )}
             </Button>
-            <div className="text-center text-sm">
+            <div className="relative w-full">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t" />
+              </div>
+              <div className="relative flex justify-center text-xs uppercase text-muted-foreground bg-background px-2">
+                or
+              </div>
+            </div>
+            <Button variant="outline" className="w-full">
+              <img src="/icons8-google-48.png" alt="Google" className="h-5 w-5 mr-2" />
+              Continue with Google
+            </Button>
+            <Button variant="outline" className="w-full">
+              <img src="/icons8-microsoft-48.png" alt="Apple" className="h-5 w-5 mr-2" />
+              Continue with Microsoft 
+            </Button>
+            <div className="text-center text-sm text-muted-foreground">
               Don&apos;t have an account?{" "}
               <Link href="/sign-up" className="text-primary hover:underline">
                 Sign up
