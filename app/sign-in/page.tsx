@@ -39,9 +39,9 @@ export default function SignInPage() {
       <Card className="w-full max-w-md rounded-lg shadow-md">
         <CardHeader className="space-y-3 text-center">
           <img
-            src="/freepik__a-modern-logo-for-reaqalert-with-the-text-in-a-sle__59980.svg"
+            src="/ResQAlert with Title-01.svg"
             alt="App Logo"
-            className="mx-auto h-10 w-10"
+            className="mx-auto h-20 w-20"
           />
           <CardTitle className="text-2xl font-semibold">Sign in to your account</CardTitle>
           <CardDescription>Use your credentials to access the dashboard</CardDescription>
