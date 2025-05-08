@@ -2,17 +2,18 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Github } from "lucide-react";
+import { logout } from "@/actions/auth.action";
 
-export default function Navbar() {
+export default function Navbar({ user }) {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 max-w-screen-2xl items-center">
         <Link href="/" className="mr-6 flex items-center space-x-2">
           {/* Updated to show only the logo image */}
           <Image
-            src="/ResQAlert with title sidewise-01.svg" 
+            src="/ResQAlert with title sidewise-01.svg"
             alt="App Logo"
-            width={135} 
+            width={135}
             height={30}
             priority
           />
@@ -49,9 +50,24 @@ export default function Navbar() {
           <Button variant="ghost" size="sm">
             Contact
           </Button>
-          <Link href="/sign-in">
-            <Button size="sm">Sign In</Button>
-          </Link>
+          {user && (
+            <Image
+              src={user?.image}
+              alt="User Avatar"
+              width={32}
+              height={32}
+              className="rounded-full"
+            />
+          )}
+          {user ? (
+            <Button onClick={logout} size="sm">
+              Logout
+            </Button>
+          ) : (
+            <Link href="/sign-in">
+              <Button size="sm">Sign In</Button>
+            </Link>
+          )}
         </div>
       </div>
     </header>

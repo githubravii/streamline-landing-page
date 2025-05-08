@@ -1,12 +1,13 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState } from "react"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { ArrowLeft, Loader2 } from "lucide-react"
+import type React from "react";
+import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { ArrowLeft, Loader2 } from "lucide-react";
+import GoogleSignIn from "./GoogleSignIn.jsx";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -14,25 +15,25 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 export default function SignInPage() {
-  const router = useRouter()
-  const [isLoading, setIsLoading] = useState(false)
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
+    e.preventDefault();
+    setIsLoading(true);
 
     setTimeout(() => {
-      setIsLoading(false)
-      router.push("/")
-    }, 1500)
-  }
+      setIsLoading(false);
+      router.push("/");
+    }, 1500);
+  };
 
   return (
     <div className="container flex h-screen items-center justify-center px-4">
@@ -43,8 +44,12 @@ export default function SignInPage() {
             alt="App Logo"
             className="mx-auto h-20 w-20"
           />
-          <CardTitle className="text-2xl font-semibold">Sign in to your account</CardTitle>
-          <CardDescription>Use your credentials to access the dashboard</CardDescription>
+          <CardTitle className="text-2xl font-semibold">
+            Sign in to your account
+          </CardTitle>
+          <CardDescription>
+            Use your credentials to access the dashboard
+          </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
@@ -97,23 +102,24 @@ export default function SignInPage() {
                 or
               </div>
             </div>
-            <Button variant="outline" className="w-full">
-              <img src="/icons8-google-48.png" alt="Google" className="h-5 w-5 mr-2" />
-              Continue with Google
-            </Button>
-            <Button variant="outline" className="w-full">
-              <img src="/icons8-microsoft-48.png" alt="Apple" className="h-5 w-5 mr-2" />
-              Continue with Microsoft 
-            </Button>
-            <div className="text-center text-sm text-muted-foreground">
-              Don&apos;t have an account?{" "}
-              <Link href="/sign-up" className="text-primary hover:underline">
-                Sign up
-              </Link>
-            </div>
           </CardFooter>
         </form>
+        <GoogleSignIn />
+        <Button variant="outline" className="w-full">
+          <img
+            src="/icons8-microsoft-48.png"
+            alt="App Logo"
+            className="h-5 w-5 mr-2"
+          />
+          Continue with Microsoft
+        </Button>
+        <div className="text-center text-sm text-muted-foreground">
+          Don&apos;t have an account?{" "}
+          <Link href="/sign-up" className="text-primary hover:underline">
+            Sign up
+          </Link>
+        </div>
       </Card>
     </div>
-  )
+  );
 }

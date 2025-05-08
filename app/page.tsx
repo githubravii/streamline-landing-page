@@ -3,8 +3,12 @@ import Hero from "@/components/hero"
 import Features from "@/components/features"
 import CTA from "@/components/cta"
 import Footer from "@/components/footer"
+import { auth } from "@/auth"
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth();
+  console.log("Session:", session);
+  const user = session?.user || null; // Check if user is present in the session
   return (
     <div className="relative min-h-screen">
       {/* Background gradients */}
@@ -15,7 +19,7 @@ export default function Home() {
       </div>
 
       <div className="relative z-10">
-        <Navbar />
+        <Navbar user={user} />
         <Hero />
         <Features />
         <CTA />
