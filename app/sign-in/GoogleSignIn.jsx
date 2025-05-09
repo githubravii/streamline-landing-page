@@ -10,7 +10,7 @@ export default function GoogleSignIn() {
       <Button type="submit" variant="outline" className="w-full">
         <div className="flex items-center justify-center gap-2">
           <Image
-            src="/icons/google.svg"
+            src="/icons8-google-48.png"
             alt="Google"
             width={20}
             height={20}

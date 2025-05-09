@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Loader2 } from "lucide-react";
@@ -18,9 +18,21 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { userSession } from "@/actions/auth.action.js";
 
 export default function SignInPage() {
-  const router = useRouter();
+  const router = useRouter()
+
+  useEffect(() => {
+    const checkSession = async () => {
+      const session = await userSession();
+      if (session) {
+        router.push("/");
+      }
+    }
+    checkSession();
+  }, [])
+
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

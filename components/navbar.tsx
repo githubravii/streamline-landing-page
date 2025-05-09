@@ -5,6 +5,7 @@ import { Github } from "lucide-react";
 import { logout } from "@/actions/auth.action";
 
 export default function Navbar({ user }) {
+  console.log("User in Navbar:", user);
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 max-w-screen-2xl items-center">
@@ -51,12 +52,10 @@ export default function Navbar({ user }) {
             Contact
           </Button>
           {user && (
-            <Image
+            <img
               src={user?.image}
               alt="User Avatar"
-              width={32}
-              height={32}
-              className="rounded-full"
+              className="rounded-full w-8 h-8"
             />
           )}
           {user ? (

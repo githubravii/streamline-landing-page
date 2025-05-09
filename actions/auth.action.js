@@ -1,7 +1,7 @@
 "use server";
 
 import axios from "axios";
-import { signIn, signOut } from "@/auth";
+import { auth, signIn, signOut } from "@/auth";
 
 const BASE_API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
 
@@ -34,4 +34,9 @@ export const logout=async () => {
   await signOut({
     callbackUrl: "/",
   })
+}
+
+export const userSession = async () => {
+  const session = await auth();
+  return session ? session : null;
 }
