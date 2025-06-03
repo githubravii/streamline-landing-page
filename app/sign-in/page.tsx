@@ -21,7 +21,7 @@ import { Label } from "@/components/ui/label";
 import { userSession } from "@/actions/auth.action.js";
 
 export default function SignInPage() {
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
     const checkSession = async () => {
@@ -29,9 +29,9 @@ export default function SignInPage() {
       if (session) {
         router.push("/");
       }
-    }
+    };
     checkSession();
-  }, [])
+  }, []);
 
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
@@ -117,14 +117,16 @@ export default function SignInPage() {
           </CardFooter>
         </form>
         <GoogleSignIn />
-        <Button variant="outline" className="w-full">
-          <img
-            src="/icons8-microsoft-48.png"
-            alt="App Logo"
-            className="h-5 w-5 mr-2"
-          />
-          Continue with Microsoft
-        </Button>
+        <div className="w-full max-w-md mx-auto px-5 py-2">
+          <Button variant="outline" className="w-full">
+            <img
+              src="/icons8-microsoft-48.png"
+              alt="App Logo"
+              className="h-5 w-5 mr-2"
+            />
+            Continue with Microsoft
+          </Button>
+        </div>
         <div className="text-center text-sm text-muted-foreground">
           Don&apos;t have an account?{" "}
           <Link href="/sign-up" className="text-primary hover:underline">

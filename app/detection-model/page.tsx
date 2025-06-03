@@ -1,10 +1,15 @@
-"use client";
-
-import React from 'react';
 import Link from 'next/link';
 import Footer from './footer2'; // Adjust the path if needed
+import { auth } from '@/auth';
+import { redirect } from 'next/navigation';
 
-export default function Homepage() {
+export default async function Homepage() {
+  const session = await auth();
+  if (!session) {
+    return (
+      redirect('/sign-in') // Redirect to login if not authenticated
+    );
+  }
   return (
     <div className="min-h-screen flex flex-col dark bg-[hsl(0,0%,3.9%)] text-[hsl(0,0%,98%)]">
       {/* Header */}
@@ -40,9 +45,9 @@ export default function Homepage() {
             <p className="text-[hsl(0,0%,63.9%)] mb-8 max-w-2xl mx-auto">
               Our AI-powered accident detection system ensures safety by providing real-time alerts and monitoring.
             </p>
-            <button className="bg-[hsl(224.3,76.3%,48%)] hover:bg-[hsl(224.3,76.3%,40%)] text-white font-medium py-2 px-6 rounded transition">
+            <Link href={"/live"} className="bg-[hsl(224.3,76.3%,48%)] hover:bg-[hsl(224.3,76.3%,40%)] text-white font-medium py-2 px-6 rounded transition">
               Go Live
-            </button>
+            </Link>
           </div>
 
           {/* Feature Cards */}

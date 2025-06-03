@@ -1,20 +1,27 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { ArrowLeft, Loader2 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
 export default function SignUpPage() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
+  const [name, setName] = useState("") // 👈 added full name state
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
@@ -25,14 +32,12 @@ export default function SignUpPage() {
       alert("Passwords do not match!")
       return
     }
+
     setIsLoading(true)
 
     // Simulate registration - replace with your actual registration logic
     setTimeout(() => {
       setIsLoading(false)
-      // After successful registration, you would typically:
-      // 1. Store user data
-      // 2. Redirect to login or home page
       router.push("/sign-in")
     }, 1500)
   }
@@ -52,6 +57,17 @@ export default function SignUpPage() {
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="name">Full Name</Label>
+              <Input
+                id="name"
+                type="text"
+                placeholder="John Doe"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -96,7 +112,7 @@ export default function SignUpPage() {
               )}
             </Button>
             <div className="text-center text-sm">
-              Already have an account? {" "}
+              Already have an account?{" "}
               <Link href="/sign-in" className="text-primary hover:underline">
                 Sign in
               </Link>
